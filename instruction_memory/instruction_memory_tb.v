@@ -1,5 +1,5 @@
 `timescale 1 ns/10 ps
-module immediate_generator_tb();
+module instruction_memory_tb();
 
 reg [31:0] addr_i;
 wire [31:0] instruction_o;
