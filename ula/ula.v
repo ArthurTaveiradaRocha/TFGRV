@@ -1,5 +1,18 @@
+`define ADD_OP 17'b01100110000000000
+`define SUB_OP 17'b01100110000100000
+`define SLL_OP 17'b01100110010000000
+`define SRL_OP 17'b01100111010000000
+`define XOR_OP 17'b01100111000000000
+`define OR_OP  17'b01100111100000000
+`define AND_OP 17'b01100111110000000
+
 module ula
-(opcode, data1_in, data2_in, funct3, funct7, data_out);
+(opcode,
+data1_in,
+data2_in, 
+funct3, 
+funct7, 
+data_out);
 
     input [31:0] data1_in;   
     input [31:0] data2_in;
@@ -14,22 +27,22 @@ module ula
     begin
         code = {opcode, funct3, funct7};
         case(code)
-            17'b01100110000000000:
+            `ADD_OP:
                 result = data1_in + data2_in; //add
-            17'b01100110000100000:
+            `SUB_OP:
                 result = data1_in - data2_in; //sub
-            17'b01100110010000000:
+            `SLL_OP:
                 result = data1_in << data2_in; //sll
-            17'b01100111010000000:
+            `SRL_OP:
                 result = data1_in >> data2_in; //srl
-            17'b01100111000000000:
+            `XOR_OP:
                 result = data1_in ^ data2_in; //XOR
-            17'b01100111100000000:
+            `OR_OP:
                 result = data1_in | data2_in; //OR
-            17'b01100111110000000:
+            `AND_OP:
                 result = data1_in & data2_in; //AND
             default:
-                result = 32'b00000000000000000000000000000000;
+                result = 0;
       endcase
     end
 

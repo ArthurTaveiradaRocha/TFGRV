@@ -1,4 +1,12 @@
 `timescale 1 ns/10 ps
+`define ADD_OP 17'b01100110000000000
+`define SUB_OP 17'b01100110000100000
+`define SLL_OP 17'b01100110010000000
+`define SRL_OP 17'b01100111010000000
+`define XOR_OP 17'b01100111000000000
+`define OR_OP  17'b01100111100000000
+`define AND_OP 17'b01100111110000000
+
 module ula_tb();
 
     reg [31:0] data1_in;
@@ -8,57 +16,49 @@ module ula_tb();
     reg [6:0] funct7;
     wire [31:0] data_out;
 
-    ula UUT(.data1_in(data1_in), .data2_in(data2_in), .opcode(opcode), .funct3(funct3), .funct7(funct7), .data_out(data_out));
+    ula UUT(
+        .data1_in(data1_in), 
+        .data2_in(data2_in), 
+        .opcode(opcode), 
+        .funct3(funct3), 
+        .funct7(funct7), 
+        .data_out(data_out));
 
     always 
     begin
         data1_in = 32'b01010101010101010101010101010101;
         data2_in = 32'b10101010101010101010101010101010; 
-        opcode = 7'b0110011;
-        funct3 = 3'b000;
-        funct7 = 7'b0000000;
+        {opcode, funct3, funct7} = `ADD_OP;
         #20; // high for 20 * timescale = 20 ns
     
         data1_in = 32'b00000011100000000000000101010101;
         data2_in = 32'b00000000000001010101010000000000; 
-        opcode = 7'b0110011;
-        funct3 = 3'b000;
-        funct7 = 7'b0100000;
+        {opcode, funct3, funct7} = `SUB_OP;
         #20; // low for 20 * timescale = 20 ns
     
         data1_in = 32'b00000011100000000000000101010101;
         data2_in = 32'b00000000000000000000000000000100; 
-        opcode = 7'b0110011;
-        funct3 = 3'b001;
-        funct7 = 7'b0000000;
+        {opcode, funct3, funct7} = `SLL_OP;
         #20; // low for 20 * timescale = 20 ns
     
         data1_in = 32'b00000011100000000000000101010101;
         data2_in = 32'b00000000000000000000000000000100; 
-        opcode = 7'b0110011;
-        funct3 = 3'b101;
-        funct7 = 7'b0000000;
+        {opcode, funct3, funct7} = `SRL_OP;
         #20; // low for 20 * timescale = 20 ns
     
         data1_in = 32'b01010101010101010101010101010101;
         data2_in = 32'b10101010101010101010101010101010; 
-        opcode = 7'b0110011;
-        funct3 = 3'b100;
-        funct7 = 7'b0000000;
+        {opcode, funct3, funct7} = `XOR_OP;
         #20; // high for 20 * timescale = 20 ns
     
         data1_in = 32'b01010101010101010101010101010101;
         data2_in = 32'b10101010101010101010101010101010; 
-        opcode = 7'b0110011;
-        funct3 = 3'b110;
-        funct7 = 7'b0000000;
+        {opcode, funct3, funct7} = `OR_OP;
         #20; // high for 20 * timescale = 20 ns
         
         data1_in = 32'b01010101010101010101010101010101;
         data2_in = 32'b10101010101010101010101010101010; 
-        opcode = 7'b0110011;
-        funct3 = 3'b111;
-        funct7 = 7'b0000000;
+        {opcode, funct3, funct7} = `AND_OP;
         #20; // high for 20 * timescale = 20 ns
     end
     
