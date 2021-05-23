@@ -4,7 +4,9 @@ module immediate_generator_tb();
     reg [31:0] Instruction_i;
     wire [31:0] ExtImmediate_o;
     
-    immediate_generator UUT(.Instruction_i(Instruction_i), .ExtImmediate_o(ExtImmediate_o));
+    immediate_generator UUT(
+        .Instruction_i(Instruction_i), 
+        .ExtImmediate_o(ExtImmediate_o));
 
     always
     begin

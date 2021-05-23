@@ -1,82 +1,78 @@
 `timescale 1 ns/10 ps
-`define ADD_OP  17'b01100110000000000
-`define SUB_OP  17'b01100110000100000
-`define SLL_OP  17'b01100110010000000
-`define SLT_OP  17'b01100110100000000
-`define SLTU_OP 17'b01100110110000000
-`define SRL_OP  17'b01100111010000000
-`define SRA_OP  17'b01100111010100000
-`define XOR_OP  17'b01100111000000000
-`define OR_OP   17'b01100111100000000
-`define AND_OP  17'b01100111110000000
+`define ULA_ADD  4'b0001
+`define ULA_SUB  4'b0010
+`define ULA_SLL  4'b0011 
+`define ULA_SLT  4'b0100
+`define ULA_SLTU 4'b0101
+`define ULA_SRL  4'b0110
+`define ULA_SRA  4'b0111
+`define ULA_XOR  4'b1000
+`define ULA_OR   4'b1001
+`define ULA_AND  4'b1010
 
 module ula_tb();
 
-    reg [31:0] data1_in;
-    reg [31:0] data2_in;
-    reg [6:0] opcode;
-    reg [2:0] funct3;
-    reg [6:0] funct7;
+    reg  [31:0] data1_in;
+    reg  [31:0] data2_in;
+    reg  [3:0] select_ula;
     wire [31:0] data_out;
 
     ula UUT(
         .data1_in(data1_in), 
         .data2_in(data2_in), 
-        .opcode(opcode), 
-        .funct3(funct3), 
-        .funct7(funct7), 
+        .select_ula(select_ula),  
         .data_out(data_out));
 
     always 
     begin
         data1_in = 32'b01010101010101010101010101010101;
         data2_in = 32'b10101010101010101010101010101010; 
-        {opcode, funct3, funct7} = `ADD_OP;
+        select_ula = `ULA_ADD;
         #20; // high for 20 * timescale = 20 ns
     
         data1_in = 32'b00000011100000000000000101010101;
-        data2_in = 32'b00000000000001010101010000000000; 
-        {opcode, funct3, funct7} = `SUB_OP;
+        data2_in = 32'b00000000000001010101010000000000;
+        select_ula = `ULA_SUB;
         #20; // low for 20 * timescale = 20 ns
     
         data1_in = 32'b00000011100000000000000101010101;
         data2_in = 32'b00000000000000000000000000000100; 
-        {opcode, funct3, funct7} = `SLL_OP;
+        select_ula = `ULA_SLL;
         #20; // low for 20 * timescale = 20 ns
 
         data1_in = 32'b00000000000000000000000000000100;
         data2_in = 32'b00000011100000000000000101010101;
-        {opcode, funct3, funct7} = `SLT_OP;
+        select_ula = `ULA_SLT;
         #20; // low for 20 * timescale = 20 ns
 
         data1_in = 32'b00000011100000000000000101010101;
         data2_in = 32'b00000000000000000000000000000100;
-        {opcode, funct3, funct7} = `SLTU_OP;
+        select_ula = `ULA_SLTU;
         #20; // low for 20 * timescale = 20 ns
     
         data1_in = 32'b00000011100000000000000101010101;
         data2_in = 32'b00000000000000000000000000000100; 
-        {opcode, funct3, funct7} = `SRL_OP;
+        select_ula = `ULA_SRL;
         #20; // low for 20 * timescale = 20 ns
 
         data1_in = 32'b10000011100000000000000101010101;
         data2_in = 32'b00000000000000000000000000000100; 
-        {opcode, funct3, funct7} = `SRA_OP;
+        select_ula = `ULA_SRA;
         #20; // low for 20 * timescale = 20 ns
     
         data1_in = 32'b01010101010101010101010101010101;
         data2_in = 32'b10101010101010101010101010101010; 
-        {opcode, funct3, funct7} = `XOR_OP;
+        select_ula = `ULA_XOR;
         #20; // high for 20 * timescale = 20 ns
     
         data1_in = 32'b01010101010101010101010101010101;
         data2_in = 32'b10101010101010101010101010101010; 
-        {opcode, funct3, funct7} = `OR_OP;
+        select_ula = `ULA_OR;
         #20; // high for 20 * timescale = 20 ns
         
         data1_in = 32'b01010101010101010101010101010101;
         data2_in = 32'b10101010101010101010101010101010; 
-        {opcode, funct3, funct7} = `AND_OP;
+        select_ula = `ULA_AND;
         #20; // high for 20 * timescale = 20 ns
     end
     

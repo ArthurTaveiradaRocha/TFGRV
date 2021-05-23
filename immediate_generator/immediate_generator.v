@@ -1,4 +1,6 @@
-module immediate_generator(Instruction_i, ExtImmediate_o);
+module immediate_generator
+(Instruction_i, 
+ExtImmediate_o);
 
     input [31:0] Instruction_i;
     output reg [31:0] ExtImmediate_o;

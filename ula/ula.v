@@ -1,54 +1,48 @@
-`define ADD_OP  17'b01100110000000000
-`define SUB_OP  17'b01100110000100000
-`define SLL_OP  17'b01100110010000000
-`define SLT_OP  17'b01100110100000000
-`define SLTU_OP 17'b01100110110000000
-`define SRL_OP  17'b01100111010000000
-`define SRA_OP  17'b01100111010100000
-`define XOR_OP  17'b01100111000000000
-`define OR_OP   17'b01100111100000000
-`define AND_OP  17'b01100111110000000
+`define ULA_ADD  4'b0001
+`define ULA_SUB  4'b0010
+`define ULA_SLL  4'b0011 
+`define ULA_SLT  4'b0100
+`define ULA_SLTU 4'b0101
+`define ULA_SRL  4'b0110
+`define ULA_SRA  4'b0111
+`define ULA_XOR  4'b1000
+`define ULA_OR   4'b1001
+`define ULA_AND  4'b1010
 
 module ula
-(opcode,
+(select_ula,
 data1_in,
-data2_in, 
-funct3, 
-funct7, 
+data2_in,  
 data_out);
 
     input  [31:0] data1_in;   
     input  [31:0] data2_in;
-    input  [6:0]  opcode;
-    input  [2:0]  funct3;
-    input  [6:0]  funct7;
+    input  [3:0]  select_ula;
     output [31:0] data_out;
     reg    [31:0] result;
-    reg    [17:0] code;
 
-    always @(data1_in or data2_in or opcode or funct3 or funct7)
+    always @(data1_in or data2_in or select_ula)
     begin
-        code = {opcode, funct3, funct7};
-        case(code)
-            `ADD_OP:
+        case(select_ula)
+            `ULA_ADD:
                 result = data1_in + data2_in; //add
-            `SUB_OP:
+            `ULA_SUB:
                 result = data1_in - data2_in; //sub
-            `SLL_OP:
+            `ULA_SLL:
                 result = data1_in << data2_in; //sll
-            `SLT_OP:
+            `ULA_SLT:
                 result = {{31{1'b0}},$signed(data1_in) < $signed(data2_in)};
-            `SLTU_OP:
+            `ULA_SLTU:
                 result = {{31{1'b0}}, data1_in < data2_in};
-            `SRL_OP:
+            `ULA_SRL:
                 result = data1_in >> data2_in; //srl
-            `SRA_OP:
+            `ULA_SRA:
                 result = data1_in >>> data2_in; //srl
-            `XOR_OP:
+            `ULA_XOR:
                 result = data1_in ^ data2_in; //XOR
-            `OR_OP:
+            `ULA_OR:
                 result = data1_in | data2_in; //OR
-            `AND_OP:
+            `ULA_AND:
                 result = data1_in & data2_in; //AND
             default:
                 result = 0;
