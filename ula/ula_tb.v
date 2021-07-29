@@ -16,12 +16,14 @@ module ula_tb();
     reg  [31:0] data2_in;
     reg  [3:0] select_ula;
     wire [31:0] data_out;
+    wire zero;
 
     ula UUT(
         .data1_in(data1_in), 
         .data2_in(data2_in), 
         .select_ula(select_ula),  
-        .data_out(data_out));
+        .data_out(data_out),
+        .zero(zero));
 
     always 
     begin

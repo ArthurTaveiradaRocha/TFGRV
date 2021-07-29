@@ -13,12 +13,14 @@ module ula
 (select_ula,
 data1_in,
 data2_in,  
-data_out);
+data_out,
+zero);
 
     input  [31:0] data1_in;   
     input  [31:0] data2_in;
     input  [3:0]  select_ula;
     output [31:0] data_out;
+    output zero;
     reg    [31:0] result;
 
     always @(data1_in or data2_in or select_ula)
@@ -50,5 +52,6 @@ data_out);
     end
 
     assign data_out = result;
+    assign zero     = result == 0;
     
 endmodule
