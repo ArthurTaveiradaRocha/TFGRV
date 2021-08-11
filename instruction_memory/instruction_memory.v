@@ -3,12 +3,12 @@ module instruction_memory(addr_i, instruction_o);
 input [31:0] addr_i;
 output [31:0] instruction_o;
 
-reg [31:0] mem [2:0];
+reg [31:0] mem [8:0];
 
 initial begin
-    $readmemb("mem.mem", mem);
+    $readmemh("../instruction_memory/instruction.rv", mem);
 end
 
-assign instruction_o = mem[addr_i];
+assign instruction_o = mem[addr_i >> 2];
 
 endmodule

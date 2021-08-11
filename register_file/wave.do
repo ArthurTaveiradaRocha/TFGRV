@@ -1,7 +1,13 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
-add wave -noupdate -radix decimal /instruction_memory_tb/addr_i
-add wave -noupdate -radix binary /instruction_memory_tb/instruction_o
+add wave -noupdate -radix decimal /register_file_tb/clock_i
+add wave -noupdate -radix decimal /register_file_tb/reg_write_i
+add wave -noupdate -radix decimal /register_file_tb/rd_register_1_i
+add wave -noupdate -radix decimal /register_file_tb/rd_register_2_i
+add wave -noupdate -radix decimal /register_file_tb/wr_register_i
+add wave -noupdate -radix decimal /register_file_tb/wr_data_i
+add wave -noupdate -radix decimal /register_file_tb/rd_data_1_o
+add wave -noupdate -radix decimal /register_file_tb/rd_data_2_o
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {299340 ps} 0}
 quietly wave cursor active 1

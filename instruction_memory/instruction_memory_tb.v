@@ -13,10 +13,10 @@ module instruction_memory_tb();
         addr_i = 0;
         #20;
     
-        addr_i = 1;
+        addr_i = 4;
         #20;
     
-        addr_i = 2;
+        addr_i = 8;
         #20;
     end
 
