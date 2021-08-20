@@ -1,4 +1,5 @@
 `define OPCODE_R    7'b0110011
+`define OPCODE_I    7'b0010011
 `define OPCODE_LW   7'b0000011
 `define OPCODE_SW   7'b0100011
 `define OPCODE_BEQ  7'b1100011
@@ -28,6 +29,15 @@ branch_o
                 reg_write_o     = 1'b1;
                 alu_op_o        = 2'b10;
                 alu_src_o       = 1'b0;
+                mem_write_o     = 1'b0;
+                mem_read_o      = 1'b0;
+                men_to_reg_o    = 1'b0;
+                branch_o        = 1'b0;
+            end
+            `OPCODE_I : begin
+                reg_write_o     = 1'b1;
+                alu_op_o        = 2'b11;
+                alu_src_o       = 1'b1;
                 mem_write_o     = 1'b0;
                 mem_read_o      = 1'b0;
                 men_to_reg_o    = 1'b0;

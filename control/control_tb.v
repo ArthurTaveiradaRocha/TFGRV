@@ -31,6 +31,9 @@ module control_tb();
         opcode_i = `OPCODE_R;
         #20; // high for 20 * timescale = 20 ns
 
+        opcode_i = `OPCODE_I;
+        #20; // high for 20 * timescale = 20 ns
+
         opcode_i = `OPCODE_LW;
         #20; // high for 20 * timescale = 20 ns
 

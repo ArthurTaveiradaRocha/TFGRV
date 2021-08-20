@@ -12,11 +12,17 @@ module core_tb();
     
     always #5 clock <= ~clock;
 
-    always #1000 reset <= ~reset;
+    // always #1000 reset <= ~reset;
 
     always 
     begin
         clock = 0;
+        reset = 1;
+
+        #12;
+
         reset = 0;
+
+        #1000;
     end
 endmodule
