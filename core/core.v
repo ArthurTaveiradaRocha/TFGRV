@@ -87,7 +87,7 @@ rd_data
         .rd_enable_i(mem_read), //conectado
         .rd_data_o(rd_data)); //conectado    
 
-    always @(clock) begin
+    always @(posedge clock) begin
         if (reset == 1) begin
             pc <= 0;
         end

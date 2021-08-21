@@ -37,9 +37,9 @@ zero);
             `ULA_SLTU:
                 result = {{31{1'b0}}, data1_in < data2_in};
             `ULA_SRL:
-                result = data1_in >> data2_in; //srl
+                result = data1_in >> data2_in[4:0]; //srl
             `ULA_SRA:
-                result = data1_in >>> data2_in; //srl
+                result = $signed(data1_in) >>> data2_in[4:0]; //srl
             `ULA_XOR:
                 result = data1_in ^ data2_in; //XOR
             `ULA_OR:

@@ -28,7 +28,6 @@ rd_data_2_o);
             begin
                 registers [wr_register_i] <= wr_data_i;
             end
-            registers [0] <= 0;
         end
         else
         begin
@@ -39,7 +38,7 @@ rd_data_2_o);
         end
     end
 
-    assign rd_data_1_o = registers [rd_register_1_i];
-    assign rd_data_2_o = registers [rd_register_2_i];
+    assign rd_data_1_o = rd_register_1_i == 5'b0 ? 32'b0 : registers [rd_register_1_i];
+    assign rd_data_2_o = rd_register_2_i == 5'b0 ? 32'b0 : registers [rd_register_2_i];
 
 endmodule
