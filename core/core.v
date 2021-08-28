@@ -18,7 +18,7 @@ rd_data
     wire branch;
     //ula_control
     wire [9:0] inst;
-    wire [1:0] ula_op;
+    wire [2:0] ula_op;
     //ula
     wire [31:0] data2_in;
     wire [3:0] select_ula;
