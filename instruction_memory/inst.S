@@ -16,7 +16,7 @@ srli x15, x4, 1
 sra x16, x4, x1
 sra x17, x11, x1
 srai x18, x4, 1
-sra x19, x11, 1
+srai x19, x11, 1
 or x20, x4, x1
 ori x21, x4, 1
 and x22, x4, x1
