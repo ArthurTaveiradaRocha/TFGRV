@@ -1,15 +1,16 @@
 `timescale 1 ns/10 ps
-`define ADD_OP  17'b01100110000000000
-`define SUB_OP  17'b01100110000100000
-`define SLL_OP  17'b01100110010000000
-`define SLT_OP  17'b01100110100000000
-`define SLTU_OP 17'b01100110110000000
-`define SRL_OP  17'b01100111010000000
-`define SRA_OP  17'b01100111010100000
-`define XOR_OP  17'b01100111000000000
-`define OR_OP   17'b01100111100000000
-`define AND_OP  17'b01100111110000000
-`define LUI_OP  17'b01101110000000000
+`define ADD_OP      17'b01100110000000000
+`define SUB_OP      17'b01100110000100000
+`define SLL_OP      17'b01100110010000000
+`define SLT_OP      17'b01100110100000000
+`define SLTU_OP     17'b01100110110000000
+`define SRL_OP      17'b01100111010000000
+`define SRA_OP      17'b01100111010100000
+`define XOR_OP      17'b01100111000000000
+`define OR_OP       17'b01100111100000000
+`define AND_OP      17'b01100111110000000
+`define LUI_OP      17'b01101110000000000
+`define AUIPC_OP    17'b00101110000000000
 
 module ula_control_tb();
 
@@ -110,6 +111,10 @@ module ula_control_tb();
 
         inst = `LUI_OP;
         ula_op = 3'b100; 
+        #20; // high for 20 * timescale = 20 ns
+
+        inst = `AUIPC_OP;
+        ula_op = 3'b101; 
         #20; // high for 20 * timescale = 20 ns
 
     end

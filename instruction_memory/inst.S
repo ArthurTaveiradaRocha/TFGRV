@@ -37,3 +37,4 @@ sltu x7, x2, x1
 slti x8, x2, -1
 sltiu x9, x2, -1
 lui x31, 1
+auipc x31, 16

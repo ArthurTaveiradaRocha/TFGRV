@@ -93,6 +93,8 @@ output [3:0]  ula_select;
                 endcase
             3'b100:
                 select = `ULA_LUI;
+            3'b101:
+                select = `ULA_AUIPC;
             default:
                 select = 4'b0;
         endcase

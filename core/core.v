@@ -12,6 +12,7 @@ rd_data
     wire [6:0] opcode;
     wire reg_write;
     wire alu_src;
+    wire alu_data1;
     wire mem_write;
     wire mem_read;
     wire men_to_reg;
@@ -20,6 +21,7 @@ rd_data
     wire [9:0] inst;
     wire [2:0] ula_op;
     //ula
+    wire [31:0] data1_in;
     wire [31:0] data2_in;
     wire [3:0] select_ula;
     wire [31:0] data_out;
@@ -44,6 +46,7 @@ rd_data
         .reg_write_o(reg_write), //conectado
         .alu_op_o(ula_op), //conectado
         .alu_src_o(alu_src), //conectado
+        .alu_data1_o(alu_data1), //conectado
         .mem_write_o(mem_write), //conectado
         .mem_read_o(mem_read), //conectado
         .men_to_reg_o(men_to_reg), //conectado
@@ -55,7 +58,7 @@ rd_data
         .ula_select(select_ula)); //conectado 
 
     ula ula_UUT(
-        .data1_in(rd_data_1), //conectado
+        .data1_in(data1_in), //conectado
         .data2_in(data2_in), //conectado
         .select_ula(select_ula),  //conectado
         .data_out(data_out), //conectado
@@ -107,6 +110,7 @@ rd_data
     assign data2_in            = (alu_src) ? ExtImmediate : rd_data_2;
     assign wr_data             = (men_to_reg) ? rd_data : data_out; 
     assign mux_pc              = (branch & zero) ? mux_pc_b : (pc + 4); //feito
+    assign data1_in            = alu_data1 ? pc : rd_data_1 ;
 
 endmodule
     

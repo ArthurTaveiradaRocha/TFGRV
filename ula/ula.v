@@ -50,6 +50,8 @@ zero);
                 result = data1_in & data2_in; //AND
             `ULA_LUI:
                 result = {data2_in[19:0], {12{1'b0}}};
+            `ULA_AUIPC:
+                result = {data2_in[19:0], {12{1'b0}}} + data1_in;
             default:
                 result = 32'bx;
       endcase

@@ -15,6 +15,7 @@ module control_tb();
     wire reg_write_o;
     wire [2:0] alu_op_o;
     wire alu_src_o;
+    wire alu_data1_o;
     wire mem_write_o;
     wire mem_read_o;
     wire men_to_reg_o;
@@ -25,6 +26,7 @@ module control_tb();
         .reg_write_o(reg_write_o),
         .alu_op_o(alu_op_o),
         .alu_src_o(alu_src_o),
+        .alu_data1_o(alu_data1_o),
         .mem_write_o(mem_write_o),
         .mem_read_o(mem_read_o),
         .men_to_reg_o(men_to_reg_o),
@@ -49,6 +51,9 @@ module control_tb();
         #20; // high for 20 * timescale = 20 ns
 
         opcode_i = `OPCODE_LUI;
+        #20; // high for 20 * timescale = 20 ns
+
+        opcode_i = `OPCODE_AUIPC;
         #20; // high for 20 * timescale = 20 ns
     end
 

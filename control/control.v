@@ -13,6 +13,7 @@ module control
 reg_write_o,
 alu_op_o,
 alu_src_o,
+alu_data1_o,
 mem_write_o,
 mem_read_o,
 men_to_reg_o,
@@ -22,6 +23,7 @@ branch_o
     output reg reg_write_o;
     output reg [2:0] alu_op_o;
     output reg alu_src_o;
+    output reg alu_data1_o;
     output reg mem_write_o;
     output reg mem_read_o;
     output reg men_to_reg_o;
@@ -33,6 +35,7 @@ branch_o
                 reg_write_o     = 1'b1;
                 alu_op_o        = 3'b010;
                 alu_src_o       = 1'b0;
+                alu_data1_o     = 1'b0;
                 mem_write_o     = 1'b0;
                 mem_read_o      = 1'b0;
                 men_to_reg_o    = 1'b0;
@@ -42,6 +45,7 @@ branch_o
                 reg_write_o     = 1'b1;
                 alu_op_o        = 3'b011;
                 alu_src_o       = 1'b1;
+                alu_data1_o     = 1'b0;
                 mem_write_o     = 1'b0;
                 mem_read_o      = 1'b0;
                 men_to_reg_o    = 1'b0;
@@ -51,6 +55,7 @@ branch_o
                 reg_write_o     = 1'b1;
                 alu_op_o        = 3'b000;
                 alu_src_o       = 1'b1;
+                alu_data1_o     = 1'b0;
                 mem_write_o     = 1'b0;
                 mem_read_o      = 1'b1;
                 men_to_reg_o    = 1'b1;
@@ -60,6 +65,7 @@ branch_o
                 reg_write_o     = 1'b0;
                 alu_op_o        = 3'b000;
                 alu_src_o       = 1'b1;
+                alu_data1_o     = 1'b0;
                 mem_write_o     = 1'b1;
                 mem_read_o      = 1'b0;
                 men_to_reg_o    = 1'b1;
@@ -69,6 +75,7 @@ branch_o
                 reg_write_o     = 1'b0;
                 alu_op_o        = 3'b001;
                 alu_src_o       = 1'b0;
+                alu_data1_o     = 1'b0;
                 mem_write_o     = 1'b0;
                 mem_read_o      = 1'b0;
                 men_to_reg_o    = 1'b1;
@@ -78,6 +85,17 @@ branch_o
                 reg_write_o     = 1'b1;
                 alu_op_o        = 3'b100;
                 alu_src_o       = 1'b1;
+                alu_data1_o     = 1'b0;
+                mem_write_o     = 1'b0;
+                mem_read_o      = 1'b0;
+                men_to_reg_o    = 1'b0;
+                branch_o        = 1'b0;
+            end
+            `OPCODE_AUIPC : begin
+                reg_write_o     = 1'b1;
+                alu_op_o        = 3'b101;
+                alu_src_o       = 1'b1;
+                alu_data1_o     = 1'b1;
                 mem_write_o     = 1'b0;
                 mem_read_o      = 1'b0;
                 men_to_reg_o    = 1'b0;
@@ -87,6 +105,7 @@ branch_o
                 reg_write_o     = 1'b0;
                 alu_op_o        = 3'b000;
                 alu_src_o       = 1'b0;
+                alu_data1_o     = 1'b0;
                 mem_write_o     = 1'b0;
                 mem_read_o      = 1'b0;
                 men_to_reg_o    = 1'b0;
