@@ -22,7 +22,7 @@ zero);
     input  [31:0] data2_in;
     input  [3:0]  select_ula;
     output [31:0] data_out;
-    output zero;
+    output reg zero;
     reg    [31:0] result;
 
     always @(*)
@@ -54,10 +54,17 @@ zero);
                 result = {data2_in[19:0], {12{1'b0}}} + data1_in;
             default:
                 result = 32'bx;
-      endcase
+        endcase
+        if(result == 0)
+        begin
+            zero = 1;
+        end
+        else
+        begin
+            zero = 0;
+        end
     end
 
     assign data_out = result;
-    assign zero     = result == 0;
     
 endmodule
