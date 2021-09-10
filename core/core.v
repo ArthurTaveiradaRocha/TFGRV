@@ -15,7 +15,7 @@ rd_data
     wire mem_write;
     wire mem_read;
     wire men_to_reg;
-    wire branch;
+    wire branch_i;
     //ula_control
     wire [9:0] inst;
     wire [1:0] ula_op;
@@ -38,6 +38,8 @@ rd_data
     wire [31:0] mux_pc;
     wire [31:0] mux_pc_b;
     reg [31:0] pc;
+    //branch
+    wire branch_o;
 
     control control_uut(
         .opcode_i(opcode), //conectado
@@ -47,7 +49,7 @@ rd_data
         .mem_write_o(mem_write), //conectado
         .mem_read_o(mem_read), //conectado
         .men_to_reg_o(men_to_reg), //conectado
-        .branch_o(branch)); //conectado
+        .branch_o(branch_i)); //conectado
 
     ula_control ula_control_UUT(
         .inst(inst), //conectado
@@ -87,6 +89,12 @@ rd_data
         .rd_enable_i(mem_read), //conectado
         .rd_data_o(rd_data)); //conectado    
 
+    branch branch_UUT(
+        .zero_i(zero), //conectado 
+        .funct3_i(inst[2:0]), //conectado 
+        .branch_i(branch_i),
+        .branch_o(branch_o));
+
     always @(posedge clock) begin
         if (reset == 1) begin
             pc <= 0;
@@ -100,13 +108,12 @@ rd_data
     assign rd_register_1[4:0]  = instruction[19:15]; //feito
     assign rd_register_2[4:0]  = instruction[24:20]; //feito
     assign wr_register[4:0]    = instruction[11:7]; //feito
-    // assign inst[16:0]          = instruction[16:0];
     assign inst[2:0]           = instruction[14:12];
     assign inst[9:3]           = instruction[31:25];
     assign mux_pc_b            = pc + (ExtImmediate<<1); //feito
     assign data2_in            = (alu_src) ? ExtImmediate : rd_data_2;
     assign wr_data             = (men_to_reg) ? rd_data : data_out; 
-    assign mux_pc              = (branch & zero) ? mux_pc_b : (pc + 4); //feito
+    assign mux_pc              = branch_o ? mux_pc_b : (pc + 4); //feito
 
 endmodule
     

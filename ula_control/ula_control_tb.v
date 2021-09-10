@@ -1,18 +1,18 @@
 `timescale 1 ns/10 ps
-`define ADD_OP  17'b01100110000000000
-`define SUB_OP  17'b01100110000100000
-`define SLL_OP  17'b01100110010000000
-`define SLT_OP  17'b01100110100000000
-`define SLTU_OP 17'b01100110110000000
-`define SRL_OP  17'b01100111010000000
-`define SRA_OP  17'b01100111010100000
-`define XOR_OP  17'b01100111000000000
-`define OR_OP   17'b01100111100000000
-`define AND_OP  17'b01100111110000000
+`define ADD_OP  10'b0000000000
+`define SUB_OP  10'b0100000000
+`define SLL_OP  10'b0000000001
+`define SLT_OP  10'b0000000010
+`define SLTU_OP 10'b0000000011
+`define SRL_OP  10'b0000000101
+`define SRA_OP  10'b0100000101
+`define XOR_OP  10'b0000000100
+`define OR_OP   10'b0000000110
+`define AND_OP  10'b0000000111
 
 module ula_control_tb();
 
-    reg  [16:0] inst;
+    reg  [9:0] inst;
     reg  [1:0]  ula_op;
     wire [3:0]  ula_select;
 
@@ -27,7 +27,15 @@ module ula_control_tb();
         ula_op = 2'b00; 
         #20; // high for 20 * timescale = 20 ns
 
-        inst = `ADD_OP;
+        inst = `SUB_OP;
+        ula_op = 2'b01; 
+        #20; // high for 20 * timescale = 20 ns
+
+        inst = `SLT_OP;
+        ula_op = 2'b01; 
+        #20; // high for 20 * timescale = 20 ns
+
+        inst = `SLTU_OP;
         ula_op = 2'b01; 
         #20; // high for 20 * timescale = 20 ns
 

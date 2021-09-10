@@ -7,5 +7,6 @@ vlog core.v \
      ../ula/ula.v \
      ../immediate_generator/immediate_generator.v \
      ../register_file/register_file.v \
-     ../ula_control/ula_control.v
+     ../ula_control/ula_control.v \
+     ../branch/branch.v 
 vsim core_tb -do wave.do -do "run 400 ns"

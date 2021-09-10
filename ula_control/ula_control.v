@@ -14,7 +14,7 @@ module ula_control
 ula_op,
 ula_select);
 
-input  [9:0] inst;
+input  [9:0]  inst;
 input  [1:0]  ula_op;
 reg    [3:0]  select;
 output [3:0]  ula_select;
@@ -25,7 +25,18 @@ output [3:0]  ula_select;
             2'b00:
                 select = `ULA_ADD;
             2'b01:
-                select = `ULA_SUB;
+                case(inst [2:0])
+                    3'b100:
+                        select = `ULA_SLT;
+                    3'b101:    
+                        select = `ULA_SLT;
+                    3'b110:
+                        select = `ULA_SLTU;
+                    3'b111:
+                        select = `ULA_SLTU;
+                    default:
+                        select = `ULA_SUB;
+                endcase
             2'b10:
                 case(inst [2:0])
                     3'b000:
