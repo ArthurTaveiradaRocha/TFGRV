@@ -28,9 +28,9 @@ output [3:0]  ula_select;
                 select = `ULA_ADD;
             3'b001:
                 select = `ULA_SUB;
-            3'b010:
+            3'b010: begin
                 case(inst [2:0])
-                    3'b000:
+                    3'b000: begin
                         case(inst [9:3])
                             7'b0100000:
                                 select = `ULA_SUB;
@@ -39,6 +39,7 @@ output [3:0]  ula_select;
                             default:
                                 select = `ULA_ADD;
                         endcase
+                    end
                     3'b001:
                         select = `ULA_SLL;
                     3'b010:
@@ -47,7 +48,7 @@ output [3:0]  ula_select;
                         select = `ULA_SLTU;
                     3'b100:
                         select = `ULA_XOR;
-                    3'b101:
+                    3'b101: begin
                         case(inst [9:3])
                             7'b0000000:
                                 select = `ULA_SRL;
@@ -56,6 +57,7 @@ output [3:0]  ula_select;
                             default:
                                 select = 4'b0;
                         endcase
+                    end
                     3'b110:
                         select = `ULA_OR;
                     3'b111:
@@ -63,7 +65,8 @@ output [3:0]  ula_select;
                     default:
                         select = 4'b0;
                 endcase
-            3'b011:
+            end
+            3'b011: begin
                 case(inst [2:0])
                     3'b000:
                         select = `ULA_ADD;
@@ -75,7 +78,7 @@ output [3:0]  ula_select;
                         select = `ULA_SLTU;
                     3'b100:
                         select = `ULA_XOR;
-                    3'b101:
+                    3'b101: begin
                         case(inst [9:3])
                             7'b0000000:
                                 select = `ULA_SRL;
@@ -84,6 +87,7 @@ output [3:0]  ula_select;
                             default:
                                 select = 4'b0;
                         endcase
+                    end
                     3'b110:
                         select = `ULA_OR;
                     3'b111:
@@ -91,6 +95,7 @@ output [3:0]  ula_select;
                     default:
                         select = 4'b0;
                 endcase
+            end
             3'b100:
                 select = `ULA_LUI;
             3'b101:

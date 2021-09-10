@@ -66,6 +66,7 @@ rd_data
 
     register_file register_UUT(
         .clock_i(clock), //conectado
+        .reset_i(reset),
         .reg_write_i(reg_write), //conectado
         .rd_register_1_i(rd_register_1), //conectado
         .rd_register_2_i(rd_register_2), //conectado

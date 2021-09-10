@@ -1,6 +1,7 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
 add wave -noupdate -radix decimal /register_file_tb/clock_i
+add wave -noupdate -radix decimal /register_file_tb/reset_i
 add wave -noupdate -radix decimal /register_file_tb/reg_write_i
 add wave -noupdate -radix decimal /register_file_tb/rd_register_1_i
 add wave -noupdate -radix decimal /register_file_tb/rd_register_2_i

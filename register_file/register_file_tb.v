@@ -2,6 +2,7 @@
 module register_file_tb();
 
     reg  clock_i;
+    reg  reset_i;
     reg  reg_write_i;
     reg  [4:0] rd_register_1_i;
     reg  [4:0] rd_register_2_i;
@@ -12,6 +13,7 @@ module register_file_tb();
 
     register_file UUT(
     .clock_i(clock_i), 
+    .reset_i(reset_i),
     .reg_write_i(reg_write_i), 
     .rd_register_1_i(rd_register_1_i),
     .rd_register_2_i(rd_register_2_i), 
@@ -25,6 +27,11 @@ module register_file_tb();
     always 
     begin
         clock_i = 0;
+        reset_i = 1;
+
+        #14;
+
+        reset_i = 0;
         
         reg_write_i     = 1;
         rd_register_1_i = 5'b00001;
