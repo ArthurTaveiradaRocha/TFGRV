@@ -23,6 +23,6 @@ module core_tb();
 
         reset = 0;
 
-        #1000;
+        #2000;
     end
 endmodule

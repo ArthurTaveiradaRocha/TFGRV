@@ -4,6 +4,7 @@ add wave -noupdate /control_tb/opcode_i
 add wave -noupdate /control_tb/reg_write_o
 add wave -noupdate /control_tb/alu_op_o
 add wave -noupdate /control_tb/alu_src_o
+add wave -noupdate /control_tb/alu_data1_o
 add wave -noupdate /control_tb/mem_write_o
 add wave -noupdate /control_tb/mem_read_o
 add wave -noupdate /control_tb/men_to_reg_o

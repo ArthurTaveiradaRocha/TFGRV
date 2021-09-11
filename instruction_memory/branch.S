@@ -3,17 +3,14 @@
 .globl _start
 _start:
 
-addi x10, x0 , 0
-li x1, N
-_LOOP1:
-addi x10, x10, 1
-beq x10, x1, _END
-beq x0, x0, _LOOP1
-_END:
+#addi x10, x0 , 0
+#li x1, N
+#_LOOP1:
+#addi x10, x10, 1
+#beq x10, x1, _END
+#beq x0, x0, _LOOP1
+#_END:
 #x10 = 0x0A
-
-li x1, 0xBEBA
-sw x1, 0(x10)
 
 addi x11, x0 , 0
 li x2, N
@@ -21,11 +18,6 @@ _LOOP2:
 addi x11, x11, 1
 bne x11, x2, _LOOP2
 #x11 = 0x0A
-
-li x2, 0xCAFE
-slli x1, x1, 16
-or x1, x1, x2
-sw x1, 0(x11)
 
 addi x12, x0 , 0
 li x3, N
