@@ -19,7 +19,7 @@ module control_tb();
     wire mem_write_o;
     wire mem_read_o;
     wire men_to_reg_o;
-    wire branch_o;
+    wire [1:0] branch_jump_o;
 
     control UUT(
         .opcode_i(opcode_i),
@@ -30,7 +30,7 @@ module control_tb();
         .mem_write_o(mem_write_o),
         .mem_read_o(mem_read_o),
         .men_to_reg_o(men_to_reg_o),
-        .branch_o(branch_o)
+        .branch_jump_o(branch_jump_o)
     );
 
     always
@@ -54,6 +54,9 @@ module control_tb();
         #20; // high for 20 * timescale = 20 ns
 
         opcode_i = `OPCODE_AUIPC;
+        #20; // high for 20 * timescale = 20 ns
+
+        opcode_i = `OPCODE_JAL;
         #20; // high for 20 * timescale = 20 ns
     end
 

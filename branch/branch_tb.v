@@ -9,8 +9,8 @@ module branch_tb();
 
     reg  zero_r;
     reg  [2:0] funct3_r;
-    reg  branch_r;
-    wire branch_w;
+    reg  [1:0] branch_r;
+    wire [1:0] branch_w;
 
     branch UUT(
         .zero_i(zero_r),
@@ -20,63 +20,73 @@ module branch_tb();
 
     always 
     begin
-        branch_r = 1;
+        branch_r = 2'b01;
         funct3_r = `BEQ;
         zero_r = 0; 
         #20; // high for 20 * timescale = 20 ns
 
-        branch_r = 1;
+        branch_r = 2'b01;
         funct3_r = `BEQ;
         zero_r = 1; 
         #20; // high for 20 * timescale = 20 ns
 
-        branch_r = 1;
+        branch_r = 2'b01;
         funct3_r = `BNE;
         zero_r = 0; 
         #20; // high for 20 * timescale = 20 ns
 
-        branch_r = 1;
+        branch_r = 2'b01;
         funct3_r = `BNE;
         zero_r = 1; 
         #20; // high for 20 * timescale = 20 ns
 
-        branch_r = 1;
+        branch_r = 2'b01;
         funct3_r = `BLT;
         zero_r = 0; 
         #20; // high for 20 * timescale = 20 ns
 
-        branch_r = 1;
+        branch_r = 2'b01;
         funct3_r = `BLT;
         zero_r = 1; 
         #20; // high for 20 * timescale = 20 ns
 
-        branch_r = 1;
+        branch_r = 2'b01;
         funct3_r = `BGE;
         zero_r = 0; 
         #20; // high for 20 * timescale = 20 ns
 
-        branch_r = 1;
+        branch_r = 2'b01;
         funct3_r = `BGE;
         zero_r = 1; 
         #20; // high for 20 * timescale = 20 ns
 
-        branch_r = 1;
+        branch_r = 2'b01;
         funct3_r = `BLTU;
         zero_r = 0; 
         #20; // high for 20 * timescale = 20 ns
 
-        branch_r = 1;
+        branch_r = 2'b01;
         funct3_r = `BLTU;
         zero_r = 1; 
         #20; // high for 20 * timescale = 20 ns
 
-        branch_r = 1;
+        branch_r = 2'b01;
         funct3_r = `BGEU;
         zero_r = 0; 
         #20; // high for 20 * timescale = 20 ns
 
-        branch_r = 1;
+        branch_r = 2'b01;
         funct3_r = `BGEU;
+        zero_r = 1; 
+        #20; // high for 20 * timescale = 20 ns
+
+        branch_r = 2'b10;
+        funct3_r = `BEQ;
+        zero_r = 1; 
+        #20; // high for 20 * timescale = 20 ns
+
+        branch_r = 2'b11;
+        funct3_r = `BEQ;
         zero_r = 1; 
         #20; // high for 20 * timescale = 20 ns
     end

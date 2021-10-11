@@ -3,13 +3,13 @@
 .globl _start
 _start:
 
-#addi x10, x0 , 0
-#li x1, N
-#_LOOP1:
-#addi x10, x10, 1
-#beq x10, x1, _END
-#beq x0, x0, _LOOP1
-#_END:
+addi x10, x0 , 0
+li x1, N
+_LOOP1:
+addi x10, x10, 1
+beq x10, x1, _END
+beq x0, x0, _LOOP1
+_END:
 #x10 = 0x0A
 
 addi x11, x0 , 0
