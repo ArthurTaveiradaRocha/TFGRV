@@ -17,7 +17,7 @@ alu_data1_o,
 mem_write_o,
 mem_read_o,
 men_to_reg_o,
-branch_o
+branch_jump_o
 );
     input [6:0] opcode_i;
     output reg reg_write_o;
@@ -27,19 +27,19 @@ branch_o
     output reg mem_write_o;
     output reg mem_read_o;
     output reg men_to_reg_o;
-    output reg branch_o;
+    output reg [1:0] branch_jump_o;
 
     always @(*) begin
         case(opcode_i)
             `OPCODE_R : begin
-                reg_write_o     = 1'b1;
-                alu_op_o        = 3'b010;
-                alu_src_o       = 1'b0;
-                alu_data1_o     = 1'b0;
-                mem_write_o     = 1'b0;
-                mem_read_o      = 1'b0;
+                reg_write_o     = 1'b1; 
+                alu_op_o        = 3'b010; 
+                alu_src_o       = 1'b0; 
+                alu_data1_o     = 1'b0; 
+                mem_write_o     = 1'b0; 
+                mem_read_o      = 1'b0; 
                 men_to_reg_o    = 1'b0;
-                branch_o        = 1'b0;
+                branch_jump_o   = 2'b00; 
             end
             `OPCODE_I : begin
                 reg_write_o     = 1'b1;
@@ -49,7 +49,7 @@ branch_o
                 mem_write_o     = 1'b0;
                 mem_read_o      = 1'b0;
                 men_to_reg_o    = 1'b0;
-                branch_o        = 1'b0;
+                branch_jump_o   = 2'b00;
             end
             `OPCODE_L : begin
                 reg_write_o     = 1'b1;
@@ -59,7 +59,7 @@ branch_o
                 mem_write_o     = 1'b0;
                 mem_read_o      = 1'b1;
                 men_to_reg_o    = 1'b1;
-                branch_o        = 1'b0;
+                branch_jump_o   = 2'b00;
             end
             `OPCODE_S : begin
                 reg_write_o     = 1'b0;
@@ -69,7 +69,7 @@ branch_o
                 mem_write_o     = 1'b1;
                 mem_read_o      = 1'b0;
                 men_to_reg_o    = 1'b1;
-                branch_o        = 1'b0;
+                branch_jump_o   = 2'b00;
             end
             `OPCODE_B : begin
                 reg_write_o     = 1'b0;
@@ -79,7 +79,7 @@ branch_o
                 mem_write_o     = 1'b0;
                 mem_read_o      = 1'b0;
                 men_to_reg_o    = 1'b1;
-                branch_o        = 1'b1;
+                branch_jump_o   = 2'b01;
             end
             `OPCODE_LUI : begin
                 reg_write_o     = 1'b1;
@@ -89,7 +89,7 @@ branch_o
                 mem_write_o     = 1'b0;
                 mem_read_o      = 1'b0;
                 men_to_reg_o    = 1'b0;
-                branch_o        = 1'b0;
+                branch_jump_o   = 2'b00;
             end
             `OPCODE_AUIPC : begin
                 reg_write_o     = 1'b1;
@@ -99,7 +99,27 @@ branch_o
                 mem_write_o     = 1'b0;
                 mem_read_o      = 1'b0;
                 men_to_reg_o    = 1'b0;
-                branch_o        = 1'b0;
+                branch_jump_o   = 2'b00;
+            end
+            `OPCODE_JAL : begin
+                reg_write_o     = 1'b1; //o_RegWrite = 1'b1;
+                alu_op_o        = 3'b000; //o_ALUOp    = 3'b000;
+                alu_src_o       = 1'b0; //o_ALUSrc2  = 1'b0;
+                alu_data1_o     = 1'b0; //o_ALUSrc1  = 1'b0;
+                mem_write_o     = 1'b0; //o_MemWrite = 1'b0;
+                mem_read_o      = 1'b0; //o_MemRead  = 1'b0;
+                men_to_reg_o    = 1'b0; //o_RegSrc   = 2'b10;
+                branch_jump_o   = 2'b10;  //o_Ctrl_Jump= 2'b10;
+            end
+            `OPCODE_JALR : begin
+                reg_write_o     = 1'b1; //o_RegWrite = 1'b1;
+                alu_op_o        = 3'b011; //o_ALUOp    = 3'b011;
+                alu_src_o       = 1'b1; //o_ALUSrc2  = 1'b1;
+                alu_data1_o     = 1'b0; //o_ALUSrc1  = 1'b0;
+                mem_write_o     = 1'b0; //o_MemWrite = 1'b0;
+                mem_read_o      = 1'b0; //o_MemRead  = 1'b0;
+                men_to_reg_o    = 1'b0; //o_RegSrc   = 2'b10;
+                branch_jump_o   = 2'b11;  //o_Ctrl_Jump= 2'b11;
             end
             default : begin
                 reg_write_o     = 1'b0;
@@ -109,7 +129,7 @@ branch_o
                 mem_write_o     = 1'b0;
                 mem_read_o      = 1'b0;
                 men_to_reg_o    = 1'b0;
-                branch_o        = 1'b0;
+                branch_jump_o   = 2'b00;
             end
         endcase
     end

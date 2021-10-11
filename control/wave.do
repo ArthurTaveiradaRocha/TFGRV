@@ -8,7 +8,7 @@ add wave -noupdate /control_tb/alu_data1_o
 add wave -noupdate /control_tb/mem_write_o
 add wave -noupdate /control_tb/mem_read_o
 add wave -noupdate /control_tb/men_to_reg_o
-add wave -noupdate /control_tb/branch_o
+add wave -noupdate /control_tb/branch_jump_o
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {30 ps} 0}
 quietly wave cursor active 1
@@ -26,4 +26,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {110 ps}
+WaveRestoreZoom {499900 ps} {500010 ps}
