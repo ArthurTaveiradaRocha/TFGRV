@@ -29,3 +29,42 @@ In this project we have some assembly code inside the instruction_memory folder,
 ```bash
 ./branch.sh
 ```
+
+## Implemented Instructions
+In this project we have implemented 35 instructions, they are: 
+- ADD - addition instruction between two registers;
+- ADDI - adds a immediate value with a value from a register;
+- SUB - subtraction between two registers;
+- SLL - shift left logical using two registers;
+- SLLI - shift left logical using a immediate value; 
+- SLT - set less than, writing 1 to rd if rs1 < rs2, 0 otherwise;
+- SLTI - set less than, using a immediate value in rs2;
+- SLTU - the same of SLT, but with unsigned values;
+- SLTIU - the same of SLTI, but with unsigned values;
+- XOR - logical operation XOR between to registers;
+- XORI - logical operation XOR between a register and a immediate value;  
+- SRL - shift right logical using two registers;
+- SRLI - shift right logical using a immediate value; 
+- SRA - shift right arithmetic using two registers;
+- SRAI - shift right arithmetic using a immediate value; 
+- OR - logical operation OR between to registers;
+- ORI - logical operation OR between a register and a immediate value;  
+- AND - logical operation AND between to registers;
+- ANDI - logical operation AND between a register and a immediate value; 
+- LW - load word;
+- BEQ - take the branch if the registers are equal; 
+- SW - store word;
+- BNE - take the branch if the registers are unequal;
+- BGE - take the branch if rs1 is greater
+than or equal to rs2;
+- BLT - take the branch if rs1 is less than rs2;
+- BLTU - the same of BLT, but with unsigned registers;
+- BGEU - the same of BGE, but with unsigned registers;
+- SB - store 8 bits values from the low bits to memory;
+- SH - store 16 bits values from the low bits to memory;
+- LB - loads 8 bits from memory then sign-extends to 32-bits;
+- LH - loads 16 bits from memory then sign-extends to 32-bits;
+- LUI - places de immediate value in the top 20 bits and fill the lowest 12 bits with zeros;
+- AUIPC - do the same thing of LUI, but adding the pc value;
+- JAL - instruction an instruction that branches to an address and simultaneously saves the address of the following instruction in a register; 
+- JALR - the same of JAL, but using a register instead of a immediate value.
