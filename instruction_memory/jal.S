@@ -1,7 +1,3 @@
-.section .text
-.globl _start
-_start:
-
 addi x1, x0, 0xCA
 addi x2, x0, 0xFE
 jal x10, _FUNC

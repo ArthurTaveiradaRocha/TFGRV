@@ -42,6 +42,8 @@ rd_data
     reg  [31:0] pc;
     //branch
     wire [1:0] branch_o;
+    wire [3:0] write_en_o;
+    wire [1:0] read_en_o;
     reg  [31:0] next_pc;
     reg  [31:0] jalr_sum_r;
 
@@ -91,8 +93,8 @@ rd_data
         .clock_i(clock), //conectado
         .addr_i(data_out), //conectado
         .wr_data_i(rd_data_2), //conectado
-        .wr_enable_i(mem_write), //conectado
-        .rd_enable_i(mem_read), //conectado
+        .wr_enable_i(write_en_o), //conectado
+        .rd_enable_i(read_en_o), //conectado
         .rd_data_o(rd_data)); //conectado    
 
     branch branch_UUT(
@@ -100,6 +102,17 @@ rd_data
         .funct3_i(inst[2:0]), //conectado 
         .branch_i(branch_i),
         .branch_o(branch_o));
+
+    store store_UUT(
+        .funct3_i(inst[2:0]), //conectado
+        .mem_write_i(mem_write), //conectado
+        .addr_i(data_out[1:0]), //conectado 
+        .write_en_o(write_en_o)); //conectado 
+
+    load load_UUT(
+        .funct3_i(inst[2:0]), //conectado
+        .mem_read_i(mem_read), //conectado
+        .read_en_o(read_en_o)); //conectado
 
     always @(posedge clock) begin
         if (reset == 1) begin
