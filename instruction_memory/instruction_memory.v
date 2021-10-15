@@ -1,4 +1,6 @@
-module instruction_memory(addr_i, instruction_o);
+module instruction_memory
+(addr_i, 
+instruction_o);
     
     input [31:0] addr_i;
     output [31:0] instruction_o;

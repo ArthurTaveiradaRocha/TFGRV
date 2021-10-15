@@ -37,7 +37,7 @@ rd_data_o
     //instruction_memory
     wire [31:0] instruction_w;
     //immediate_generator
-    wire [31:0] ExtImmediate_w;
+    wire [31:0] extImmediate_w;
     wire [31:0] mux_pc_w;
     wire [31:0] mux_pc_b_w;
     reg  [31:0] pc_w;
@@ -87,8 +87,8 @@ rd_data_o
         .instruction_o(instruction_w));
 
     immediate_generator immediate_u(
-        .Instruction_i(instruction_w),
-        .ExtImmediate_o(ExtImmediate_w));
+        .instruction_i(instruction_w),
+        .extImmediate_o(extImmediate_w));
 
     data_memory data_u(
         .clock_i(clock_i),
@@ -132,8 +132,8 @@ rd_data_o
     assign funct_3_w             = instruction_w[14:12];
     assign funct_7_w             = instruction_w[31:25];
     assign inst_w                = {funct_7_w, funct_3_w};
-    assign mux_pc_b_w            = pc_w + (ExtImmediate_w<<1);
-    assign data2_in_w            = (alu_src_w) ? ExtImmediate_w : rd_data_2_w;
+    assign mux_pc_b_w            = pc_w + (extImmediate_w<<1);
+    assign data2_in_w            = (alu_src_w) ? extImmediate_w : rd_data_2_w;
     assign wr_data_w             = branch_wo[1] ? next_pc_r : (men_to_reg_w ? rd_data_o : data_out_w); 
     assign mux_pc_w              = branch_wo[1] ? (branch_wo[0] ? mux_pc_b_w : jalr_sum_r) : (branch_wo[0] ? mux_pc_b_w : next_pc_r);
     assign data1_in_w            = alu_data1_w ? pc_w : rd_data_1_w ;
