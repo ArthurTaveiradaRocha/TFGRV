@@ -12,125 +12,111 @@
 `define LUI_OP      17'b01101110000000000
 `define AUIPC_OP    17'b00101110000000000
 
-module ula_control_tb();
+module alu_control_tb();
 
     reg  [16:0] inst;
-    reg  [2:0]  ula_op;
-    wire [3:0]  ula_select;
+    reg  [2:0]  alu_op;
+    wire [3:0]  alu_select;
 
-    ula_control UUT(
+    alu_control UUT(
         .inst(inst), 
-        .ula_op(ula_op),  
-        .ula_select(ula_select));
+        .alu_op(alu_op),  
+        .alu_select(alu_select));
 
     always 
     begin
         inst = `ADD_OP;
-        ula_op = 3'b000; 
-        #20; // high for 20 * timescale = 20 ns
-
-<<<<<<< HEAD
-        inst = `SUB_OP;
-        ula_op = 2'b01; 
-        #20; // high for 20 * timescale = 20 ns
-
-        inst = `SLT_OP;
-        ula_op = 2'b01; 
-        #20; // high for 20 * timescale = 20 ns
-
-        inst = `SLTU_OP;
-        ula_op = 2'b01; 
-=======
-        inst = `ADD_OP;
-        ula_op = 3'b001; 
->>>>>>> a214a616000edd93160111f5a4089dbc53bd23c7
+        alu_op = 3'b000; 
         #20; // high for 20 * timescale = 20 ns
 
         inst = `ADD_OP;
-        ula_op = 3'b010; 
+        alu_op = 3'b001; 
+        #20; // high for 20 * timescale = 20 ns
+
+        inst = `ADD_OP;
+        alu_op = 3'b010; 
         #20; // high for 20 * timescale = 20 ns
 
         inst = `SUB_OP;
-        ula_op = 3'b010; 
+        alu_op = 3'b010; 
         #20; // high for 20 * timescale = 20 ns
 
         inst = `SLL_OP;
-        ula_op = 3'b010; 
+        alu_op = 3'b010; 
         #20; // high for 20 * timescale = 20 ns
 
         inst = `SLT_OP;
-        ula_op = 3'b010; 
+        alu_op = 3'b010; 
         #20; // high for 20 * timescale = 20 ns
 
         inst = `SLTU_OP;
-        ula_op = 3'b010; 
+        alu_op = 3'b010; 
         #20; // high for 20 * timescale = 20 ns
 
         inst = `SRL_OP;
-        ula_op = 3'b010; 
+        alu_op = 3'b010; 
         #20; // high for 20 * timescale = 20 ns
 
         inst = `SRA_OP;
-        ula_op = 3'b010; 
+        alu_op = 3'b010; 
         #20; // high for 20 * timescale = 20 ns
 
         inst = `XOR_OP;
-        ula_op = 3'b010; 
+        alu_op = 3'b010; 
         #20; // high for 20 * timescale = 20 ns
 
         inst = `OR_OP;
-        ula_op = 3'b010; 
+        alu_op = 3'b010; 
         #20; // high for 20 * timescale = 20 ns
 
         inst = `AND_OP;
-        ula_op = 3'b010; 
+        alu_op = 3'b010; 
         #20; // high for 20 * timescale = 20 ns
 
         inst = `ADD_OP;
-        ula_op = 3'b011; 
+        alu_op = 3'b011; 
         #20; // high for 20 * timescale = 20 ns
 
         inst = `SLL_OP;
-        ula_op = 3'b011; 
+        alu_op = 3'b011; 
         #20; // high for 20 * timescale = 20 ns
 
         inst = `SLT_OP;
-        ula_op = 3'b011; 
+        alu_op = 3'b011; 
         #20; // high for 20 * timescale = 20 ns
         
         inst = `SLTU_OP;
-        ula_op = 3'b011; 
+        alu_op = 3'b011; 
         #20; // high for 20 * timescale = 20 ns
         
         inst = `XOR_OP;
-        ula_op = 3'b011; 
+        alu_op = 3'b011; 
         #20; // high for 20 * timescale = 20 ns
         
         inst = `SRL_OP;
-        ula_op = 3'b011; 
+        alu_op = 3'b011; 
         #20; // high for 20 * timescale = 20 ns
         
         inst = `SRA_OP;
-        ula_op = 3'b011; 
+        alu_op = 3'b011; 
         #20; // high for 20 * timescale = 20 ns
         
         inst = `OR_OP;
-        ula_op = 3'b011; 
+        alu_op = 3'b011; 
         #20; // high for 20 * timescale = 20 ns
         
         inst = `AND_OP;
-        ula_op = 3'b011; 
+        alu_op = 3'b011; 
         #20; // high for 20 * timescale = 20 ns
 
         inst = `LUI_OP;
-        ula_op = 3'b100; 
+        alu_op = 3'b100; 
         #20; // high for 20 * timescale = 20 ns
 
         inst = `AUIPC_OP;
-        ula_op = 3'b101; 
+        alu_op = 3'b101; 
         #20; // high for 20 * timescale = 20 ns
 
     end
-
 endmodule
 

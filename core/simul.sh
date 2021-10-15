@@ -7,7 +7,7 @@ vlog core.v \
      ../alu/alu.v \
      ../immediate_generator/immediate_generator.v \
      ../register_file/register_file.v \
-     ../ula_control/ula_control.v \
+     ../alu_control/alu_control.v \
      ../branch/branch.v \
      ../store/store.v \
      ../load/load.v

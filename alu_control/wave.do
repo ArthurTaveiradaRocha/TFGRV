@@ -1,8 +1,8 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
-add wave -noupdate /ula_control_tb/inst
-add wave -noupdate /ula_control_tb/ula_op
-add wave -noupdate /ula_control_tb/ula_select
+add wave -noupdate /alu_control_tb/inst
+add wave -noupdate /alu_control_tb/alu_op
+add wave -noupdate /alu_control_tb/alu_select
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {0 ps} 0}
 quietly wave cursor active 1
