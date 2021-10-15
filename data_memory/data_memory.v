@@ -1,3 +1,6 @@
+`define WIDTH_DATA   32
+`define WIDTH_MEMORY 8
+
 module data_memory
 (clock_i,
 addr_i,
@@ -7,13 +10,13 @@ rd_enable_i,
 rd_data_o);
 
     input   clock_i;
-    input   [31:0] addr_i;
-    input   [31:0] wr_data_i;
+    input   [`WIDTH_DATA-1:0] addr_i;
+    input   [`WIDTH_DATA-1:0] wr_data_i;
     input   [3:0] wr_enable_i;
     input   [1:0] rd_enable_i;
-    output reg [31:0] rd_data_o;
+    output reg [`WIDTH_DATA-1:0] rd_data_o;
 
-    reg [7:0] memory [256:0];
+    reg [`WIDTH_MEMORY-1:0] memory [1024:0];
 
     always @(posedge clock_i)
     begin
@@ -49,7 +52,4 @@ rd_data_o);
             default : rd_data_o = 32'b0;
         endcase
     end
-    
-    // assign rd_data_o = rd_enable_i ? {memory[(addr_i<<2)+3], memory[(addr_i<<2)+2], memory[(addr_i<<2)+1], memory[addr_i<<2]}  : 32'b0;
-
 endmodule

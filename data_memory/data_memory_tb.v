@@ -1,12 +1,14 @@
 `timescale 1 ns/10 ps
+`define WIDTH_DATA   32
+
 module data_memory_tb();
 
     reg  clock_i;
-    reg  [31:0] addr_i;
-    reg  [31:0] wr_data_i;
+    reg  [`WIDTH_DATA-1:0] addr_i;
+    reg  [`WIDTH_DATA-1:0] wr_data_i;
     reg  [4:0] wr_enable_i;
     reg  [1:0] rd_enable_i;
-    wire [31:0] rd_data_o;
+    wire [`WIDTH_DATA-1:0] rd_data_o;
 
     data_memory UUT(
     .clock_i(clock_i), 

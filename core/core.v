@@ -20,11 +20,11 @@ rd_data_o
     wire [9:0] inst_w;
     wire [2:0] funct_3_w;
     wire [6:0] funct_7_w;
-    wire [2:0] ula_op_w;
+    wire [2:0] alu_op_w;
     //ula
     wire [31:0] data1_in_w;
     wire [31:0] data2_in_w;
-    wire [3:0] select_ula_w;
+    wire [3:0] select_alu_w;
     wire [31:0] data_out_w;
     wire zero_w;
     //register_file
@@ -51,7 +51,7 @@ rd_data_o
     control control_u(
         .opcode_i(opcode_w),
         .reg_write_o(reg_write_w),
-        .alu_op_o(ula_op_w),
+        .alu_op_o(alu_op_w),
         .alu_src_o(alu_src_w),
         .alu_data1_o(alu_data1_w),
         .mem_write_o(mem_write_w),
@@ -61,13 +61,13 @@ rd_data_o
 
     ula_control ula_control_u(
         .inst(inst_w), //{funct7, funct3}
-        .ula_op(ula_op_w),
-        .ula_select(select_ula_w));
+        .ula_op(alu_op_w),
+        .ula_select(select_alu_w));
 
     ula ula_u(
         .data1_in(data1_in_w),
         .data2_in(data2_in_w),
-        .select_ula(select_ula_w),
+        .select_ula(select_alu_w),
         .data_out(data_out_w),
         .zero(zero_w));
 

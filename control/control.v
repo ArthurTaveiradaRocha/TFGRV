@@ -19,6 +19,7 @@ mem_read_o,
 men_to_reg_o,
 branch_jump_o
 );
+
     input [6:0] opcode_i;
     output reg reg_write_o;
     output reg [2:0] alu_op_o;
@@ -102,24 +103,24 @@ branch_jump_o
                 branch_jump_o   = 2'b00;
             end
             `OPCODE_JAL : begin
-                reg_write_o     = 1'b1; //o_RegWrite = 1'b1;
-                alu_op_o        = 3'b000; //o_ALUOp    = 3'b000;
-                alu_src_o       = 1'b0; //o_ALUSrc2  = 1'b0;
-                alu_data1_o     = 1'b0; //o_ALUSrc1  = 1'b0;
-                mem_write_o     = 1'b0; //o_MemWrite = 1'b0;
-                mem_read_o      = 1'b0; //o_MemRead  = 1'b0;
-                men_to_reg_o    = 1'b0; //o_RegSrc   = 2'b10;
-                branch_jump_o   = 2'b10;  //o_Ctrl_Jump= 2'b10;
+                reg_write_o     = 1'b1; 
+                alu_op_o        = 3'b000; 
+                alu_src_o       = 1'b0; 
+                alu_data1_o     = 1'b0; 
+                mem_write_o     = 1'b0; 
+                mem_read_o      = 1'b0; 
+                men_to_reg_o    = 1'b0; 
+                branch_jump_o   = 2'b10;  
             end
             `OPCODE_JALR : begin
-                reg_write_o     = 1'b1; //o_RegWrite = 1'b1;
-                alu_op_o        = 3'b011; //o_ALUOp    = 3'b011;
-                alu_src_o       = 1'b1; //o_ALUSrc2  = 1'b1;
-                alu_data1_o     = 1'b0; //o_ALUSrc1  = 1'b0;
-                mem_write_o     = 1'b0; //o_MemWrite = 1'b0;
-                mem_read_o      = 1'b0; //o_MemRead  = 1'b0;
-                men_to_reg_o    = 1'b0; //o_RegSrc   = 2'b10;
-                branch_jump_o   = 2'b11;  //o_Ctrl_Jump= 2'b11;
+                reg_write_o     = 1'b1; 
+                alu_op_o        = 3'b011; 
+                alu_src_o       = 1'b1; 
+                alu_data1_o     = 1'b0; 
+                mem_write_o     = 1'b0; 
+                mem_read_o      = 1'b0; 
+                men_to_reg_o    = 1'b0; 
+                branch_jump_o   = 2'b11;  
             end
             default : begin
                 reg_write_o     = 1'b0;

@@ -58,6 +58,9 @@ module control_tb();
 
         opcode_i = `OPCODE_JAL;
         #20; // high for 20 * timescale = 20 ns
+
+        opcode_i = `OPCODE_JALR;
+        #20; // high for 20 * timescale = 20 ns
     end
 
 endmodule
