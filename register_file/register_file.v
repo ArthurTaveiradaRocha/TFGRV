@@ -1,5 +1,5 @@
-`define N_WIDTH  32
-`define N_LENGTH 32
+`define WIDTH_DATA   32
+`define LENGTH 32
 
 module register_file
 (clock_i, 
@@ -18,17 +18,17 @@ rd_data_2_o);
     input  [4:0] rd_register_1_i;
     input  [4:0] rd_register_2_i;
     input  [4:0] wr_register_i;
-    input  [`N_WIDTH-1:0] wr_data_i;
-    output [`N_WIDTH-1:0] rd_data_1_o;
-    output [`N_WIDTH-1:0] rd_data_2_o;
+    input  [`WIDTH_DATA-1:0] wr_data_i;
+    output [`WIDTH_DATA-1:0] rd_data_1_o;
+    output [`WIDTH_DATA-1:0] rd_data_2_o;
 
-    reg [`N_WIDTH-1:0] registers [`N_LENGTH-1:0];
+    reg [`WIDTH_DATA-1:0] registers [`LENGTH-1:0];
     integer i;
 
     always @(posedge clock_i)
     begin
         if(reset_i) begin
-            for(i=0;i<`N_LENGTH;i=i+1) begin
+            for(i=0;i<`LENGTH;i=i+1) begin
                 registers [i] <= 0;
             end
         end

@@ -1,8 +1,10 @@
 `timescale 1 ns/10 ps
+`define WIDTH_DATA   32
+
 module immediate_generator_tb();
 
-    reg [31:0] Instruction_i;
-    wire [31:0] ExtImmediate_o;
+    reg [`WIDTH_DATA-1:0] Instruction_i;
+    wire [`WIDTH_DATA-1:0] ExtImmediate_o;
     
     immediate_generator UUT(
         .Instruction_i(Instruction_i), 

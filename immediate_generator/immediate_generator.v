@@ -1,9 +1,11 @@
+`define WIDTH_DATA   32
+
 module immediate_generator
 (instruction_i, 
 extImmediate_o);
 
-    input [31:0] instruction_i;
-    output reg [31:0] extImmediate_o;
+    input [`WIDTH_DATA-1:0] instruction_i;
+    output reg [`WIDTH_DATA-1:0] extImmediate_o;
 
     always @(*) begin
         case(instruction_i[6:0])

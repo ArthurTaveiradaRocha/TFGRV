@@ -1,56 +1,57 @@
-`define ULA_ADD    4'b0001
-`define ULA_SUB    4'b0010
-`define ULA_SLL    4'b0011
-`define ULA_SLT    4'b0100
-`define ULA_SLTU   4'b0101
-`define ULA_SRL    4'b0110
-`define ULA_SRA    4'b0111
-`define ULA_XOR    4'b1000
-`define ULA_OR     4'b1001
-`define ULA_AND    4'b1010
-`define ULA_LUI    4'b1011
-`define ULA_AUIPC  4'b1100
+`define WIDTH_DATA 32
+`define ALU_ADD    4'b0001
+`define ALU_SUB    4'b0010
+`define ALU_SLL    4'b0011
+`define ALU_SLT    4'b0100
+`define ALU_SLTU   4'b0101
+`define ALU_SRL    4'b0110
+`define ALU_SRA    4'b0111
+`define ALU_XOR    4'b1000
+`define ALU_OR     4'b1001
+`define ALU_AND    4'b1010
+`define ALU_LUI    4'b1011
+`define ALU_AUIPC  4'b1100
 
-module ula
-(select_ula,
+module alu
+(select_alu,
 data1_in,
 data2_in,  
 data_out,
 zero);
 
-    input  [31:0] data1_in;   
-    input  [31:0] data2_in;
-    input  [3:0]  select_ula;
-    output [31:0] data_out;
+    input  [`WIDTH_DATA-1:0] data1_in;   
+    input  [`WIDTH_DATA-1:0] data2_in;
+    input  [3:0]  select_alu;
+    output [`WIDTH_DATA-1:0] data_out;
     output reg zero;
-    reg    [31:0] result;
+    reg    [`WIDTH_DATA-1:0] result;
 
     always @(*)
     begin
-        case(select_ula)
-            `ULA_ADD:
+        case(select_alu)
+            `ALU_ADD:
                 result = data1_in + data2_in; //add
-            `ULA_SUB:
+            `ALU_SUB:
                 result = data1_in - data2_in; //sub
-            `ULA_SLL:
+            `ALU_SLL:
                 result = data1_in << data2_in[4:0]; //sll
-            `ULA_SLT:
+            `ALU_SLT:
                 result = {{31{1'b0}},$signed(data1_in) < $signed(data2_in)};
-            `ULA_SLTU:
+            `ALU_SLTU:
                 result = {{31{1'b0}}, data1_in < data2_in};
-            `ULA_SRL:
+            `ALU_SRL:
                 result = data1_in >> data2_in[4:0]; //srl
-            `ULA_SRA:
+            `ALU_SRA:
                 result = $signed(data1_in) >>> data2_in[4:0]; //srl
-            `ULA_XOR:
+            `ALU_XOR:
                 result = data1_in ^ data2_in; //XOR
-            `ULA_OR:
+            `ALU_OR:
                 result = data1_in | data2_in; //OR
-            `ULA_AND:
+            `ALU_AND:
                 result = data1_in & data2_in; //AND
-            `ULA_LUI:
+            `ALU_LUI:
                 result = {data2_in[19:0], {12{1'b0}}};
-            `ULA_AUIPC:
+            `ALU_AUIPC:
                 result = {data2_in[19:0], {12{1'b0}}} + data1_in;
             default:
                 result = 32'bx;

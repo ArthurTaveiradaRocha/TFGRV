@@ -64,10 +64,10 @@ rd_data_o
         .ula_op(alu_op_w),
         .ula_select(select_alu_w));
 
-    ula ula_u(
+    alu alu_u(
         .data1_in(data1_in_w),
         .data2_in(data2_in_w),
-        .select_ula(select_alu_w),
+        .select_alu(select_alu_w),
         .data_out(data_out_w),
         .zero(zero_w));
 

@@ -1,4 +1,6 @@
 `timescale 1 ns/10 ps
+`define WIDTH_DATA   32
+
 module register_file_tb();
 
     reg  clock_i;
@@ -7,9 +9,9 @@ module register_file_tb();
     reg  [4:0] rd_register_1_i;
     reg  [4:0] rd_register_2_i;
     reg  [4:0] wr_register_i;
-    reg  [31:0] wr_data_i;
-    wire [31:0] rd_data_1_o;
-    wire [31:0] rd_data_2_o;
+    reg  [`WIDTH_DATA-1:0] wr_data_i;
+    wire [`WIDTH_DATA-1:0] rd_data_1_o;
+    wire [`WIDTH_DATA-1:0] rd_data_2_o;
 
     register_file UUT(
     .clock_i(clock_i), 
