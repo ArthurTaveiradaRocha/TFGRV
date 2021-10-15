@@ -59,10 +59,10 @@ rd_data_o
         .men_to_reg_o(men_to_reg_w),
         .branch_jump_o(branch_wi));
 
-    ula_control ula_control_u(
+    alu_control alu_control_u(
         .inst(inst_w), //{funct7, funct3}
-        .ula_op(alu_op_w),
-        .ula_select(select_alu_w));
+        .alu_op(alu_op_w),
+        .alu_select(select_alu_w));
 
     alu alu_u(
         .data1_in(data1_in_w),

@@ -12,9 +12,9 @@ add wave -noupdate /core_tb/UUT/men_to_reg_w
 add wave -noupdate /core_tb/UUT/branch_u/branch_i
 add wave -noupdate /core_tb/UUT/branch_u/branch_o
 add wave -noupdate -radix hexadecimal /core_tb/UUT/inst_w
-add wave -noupdate /core_tb/UUT/ula_op_w
+add wave -noupdate /core_tb/UUT/alu_op_w
 add wave -noupdate -radix hexadecimal /core_tb/UUT/data2_in_w
-add wave -noupdate /core_tb/UUT/select_ula_w
+add wave -noupdate /core_tb/UUT/select_alu_w
 add wave -noupdate -radix hexadecimal /core_tb/UUT/data_out_w
 add wave -noupdate /core_tb/UUT/zero_w
 add wave -noupdate /core_tb/UUT/rd_register_1_w
@@ -24,7 +24,7 @@ add wave -noupdate -radix hexadecimal /core_tb/UUT/wr_data_w
 add wave -noupdate -radix hexadecimal /core_tb/UUT/rd_data_1_w
 add wave -noupdate -radix hexadecimal /core_tb/UUT/rd_data_2_w
 add wave -noupdate -radix hexadecimal /core_tb/UUT/instruction_w
-add wave -noupdate -radix hexadecimal /core_tb/UUT/ExtImmediate_w
+add wave -noupdate -radix hexadecimal /core_tb/UUT/extImmediate_w
 add wave -noupdate -radix hexadecimal /core_tb/UUT/mux_pc_w
 add wave -noupdate -radix hexadecimal /core_tb/UUT/mux_pc_b_w
 add wave -noupdate -radix hexadecimal /core_tb/UUT/pc_w
